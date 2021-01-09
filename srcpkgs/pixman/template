@@ -1,7 +1,7 @@
 # Template file for 'pixman'
 pkgname=pixman
 version=0.40.0
-revision=1
+revision=2
 build_style=meson
 # gtk is only necessary for demos, disabled to avoid dependency loop
 configure_args="-Dgtk=disabled -Dgnu-inline-asm=enabled -Diwmmxt=disabled"
@@ -34,5 +34,7 @@ pixman-devel_package() {
 		vmove usr/include
 		vmove usr/lib/pkgconfig
 		vmove "usr/lib/*.so"
+		# needed by wlroots-devel
+		ln ${DESTDIR}/usr/include/pixman-1/* ${DESTDIR}/usr/include
 	}
 }
